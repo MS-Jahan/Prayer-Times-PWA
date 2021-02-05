@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <script src="Adhan.js"></script>
+    <script src="moment-with-locales.min.js"></script>
+    <script src="moment-timezone-with-data-10-year-range.min.js"></script>
+</head>
+
+<body>
+    <!-- <button onclick="getLocation()">Try It</button> -->
+    <p id="demo"></p>
+    <script>
+        var date = new Date();
+        var coordinates = new adhan.Coordinates(23.566000, 90.373000);
+
+        var params = adhan.CalculationMethod.MuslimWorldLeague();
+        params.madhab = adhan.Madhab.Hanafi;
+
+        var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
+        var fajrTime = moment(prayerTimes.fajr).tz('Asia/Dhaka').format('h:mm A');
+        var sunriseTime = moment(prayerTimes.sunrise).tz('Asia/Dhaka').format('h:mm A');
+        var dhuhrTime = moment(prayerTimes.dhuhr).tz('Asia/Dhaka').format('h:mm A');
+        var asrTime = moment(prayerTimes.asr).tz('Asia/Dhaka').format('h:mm A');
+        var maghribTime = moment(prayerTimes.maghrib).tz('Asia/Dhaka').format('h:mm A');
+        var ishaTime = moment(prayerTimes.isha).tz('Asia/Dhaka').format('h:mm A');
+        var string = "Fajr: " + fajrTime + "\nSunrise: " + sunriseTime + "\nDhuhr: " + dhuhrTime + "\nAsr: " + asrTime + "\nMaghrib: " + maghribTime + "\nIsha: " + ishaTime;
+        document.getElementById("demo").innerText = string;
+    </script>
+</body>
+
+</html>

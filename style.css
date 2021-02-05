@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#app-bar {
+    background-color: blueviolet;
+    height: 10%;
+    max-height: 10%;
+    min-height: 10%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%; 
+}
+
+#app-bar-text {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding-inline-start: 2%;
+    color: white;
+    display: inline-flex;
+    width: 90%;
+}
+
+#menu-btn {
+    font-size: 200%;
+}
+
+#app-name {
+    padding-left: 4%;
+    padding-top: 0.2%;
+    font-size:x-large;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#main-content {
+    padding-top: 3%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+#time {
+    text-align: center;
+    font-size: 300%;
+}
+
+#small-colon {
+    font-size: 25px;
+}
+
+#second {
+    padding-left: 5px;
+    font-size: 25px;
+}
+
+#day-and-date {
+    text-align: center;
+    margin-top: 1%;
+}
+
+#sunrise-and-sunset {
+    margin-top: 1%;
+}
+
+#sunrise {
+    float:left;
+}
+
+#sunset {
+    float: right;
+}
+
+#prayer-times {
+    margin-top: 5%;
+}
+
+
+.pt-row {
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prayer-box {
+    width: 170px;
+    padding: 10px;
+    border: 1px solid grey;
+    height: 170px;
+    border-radius: 20%;
+    margin: 0 30px 0 30px;
+    text-align: center;
+    box-shadow: 1px 1px 2px black, 0 0 25px grey, 0 0 5px white;
+}
+
+.inside-prayer-box {
+    height: -webkit-fill-available;
+    margin: auto;
+    padding: 45px 0;
+    overflow: auto;
+}
+
+.prayer-name {
+    font-size: xx-large;
+}
+
+.prayer-time {
+    margin: 10px;
+}
+
+/* #isha {
+    width: 200px;
+    height: 200px;
+} */

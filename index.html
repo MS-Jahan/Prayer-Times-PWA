@@ -1,31 +1,80 @@
 <html>
 
 <head>
+    <title>Prayer Times PWA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
     <script src="Adhan.js"></script>
     <script src="moment-with-locales.min.js"></script>
     <script src="moment-timezone-with-data-10-year-range.min.js"></script>
+
 </head>
 
 <body>
-    <!-- <button onclick="getLocation()">Try It</button> -->
-    <p id="demo"></p>
-    <script>
-        var date = new Date();
-        var coordinates = new adhan.Coordinates(23.566000, 90.373000);
+    <div id="app-bar">
+        <div id="app-bar-text">
+            <i id="menu-btn" class="material-icons">menu</i>
+            <span id="app-name">Prayer Times PWA</span>
+        </div>
+    </div>
+    <div id="main-content">
+        <div id="time">
+            <span id="hour">HOUR</span>:<span id="minute">MINUTE</span><span id="small-colon">:</span><span id="second">SECOND</span>&nbsp;<span id="am-pm">pm</span>
+        </div>
+        <div id="day-and-date">
+            <span id="day">DAY</span>&nbsp;|&nbsp;<span id="date">DATE</span>&nbsp;<span
+                id="month">MONTH</span>,&nbsp;<span id="year">YEAR</span>
+        </div>
+        <div id="sunrise-and-sunset">
+            <span id="sunrise">
+                Sunrise: <span id="sunrise-time">6:00 am</span>
+            </span>
+            <span id="sunset">
+                Sunset: <span id="sunset-time">5:30 pm</span>
+            </span>
 
-        var params = adhan.CalculationMethod.MuslimWorldLeague();
-        params.madhab = adhan.Madhab.Hanafi;
-
-        var prayerTimes = new adhan.PrayerTimes(coordinates, date, params);
-        var fajrTime = moment(prayerTimes.fajr).tz('Asia/Dhaka').format('h:mm A');
-        var sunriseTime = moment(prayerTimes.sunrise).tz('Asia/Dhaka').format('h:mm A');
-        var dhuhrTime = moment(prayerTimes.dhuhr).tz('Asia/Dhaka').format('h:mm A');
-        var asrTime = moment(prayerTimes.asr).tz('Asia/Dhaka').format('h:mm A');
-        var maghribTime = moment(prayerTimes.maghrib).tz('Asia/Dhaka').format('h:mm A');
-        var ishaTime = moment(prayerTimes.isha).tz('Asia/Dhaka').format('h:mm A');
-        var string = "Fajr: " + fajrTime + "\nSunrise: " + sunriseTime + "\nDhuhr: " + dhuhrTime + "\nAsr: " + asrTime + "\nMaghrib: " + maghribTime + "\nIsha: " + ishaTime;
-        document.getElementById("demo").innerText = string; 
-    </script>
+        </div>
+        <div id="prayer-times">
+            <div class="pt-row">
+                <div id="fajr" class="prayer-box">
+                    <div class="inside-prayer-box">
+                        <div class="prayer-name">Fajr</div>
+                        <div class="prayer-time">5:20 pm</div>
+                    </div>
+                </div>
+                <div id="dhuhr" class="prayer-box">
+                    <div class="inside-prayer-box">
+                        <div class="prayer-name">Dhuhr</div>
+                        <div class="prayer-time">5:20 pm</div>
+                    </div>
+                </div>
+                <div id="asr" class="prayer-box">
+                    <div class="inside-prayer-box">
+                        <div class="prayer-name">Asr</div>
+                        <div class="prayer-time">5:20 pm</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-row">
+                <div id="maghrib" class="prayer-box">
+                    <div class="inside-prayer-box">
+                        <div class="prayer-name">Maghrib</div>
+                        <div class="prayer-time">5:20 pm</div>
+                    </div>
+                </div>
+                <div id="isha" class="prayer-box">
+                    <div class="inside-prayer-box">
+                        <div class="prayer-name">Isha</div>
+                        <div class="prayer-time">5:20 pm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="prayer-calc.js"></script>
 </body>
-<!-- test -->
+
 </html>
+
