@@ -66,7 +66,7 @@ function updatePrayerTimes() {
 
     //console.log(lastPrayer);
 
-<<<<<<< HEAD
+
     var fajrTime = moment(prayerTimes.fajr).tz('Asia/Dhaka').format('hh:mm A');
     var sunriseTime = moment(prayerTimes.sunrise).tz('Asia/Dhaka').format('hh:mm A');
     var dhuhrTime = moment(prayerTimes.dhuhr).tz('Asia/Dhaka').format('hh:mm A');
@@ -74,7 +74,7 @@ function updatePrayerTimes() {
     var sunsetTime = moment(prayerTimes.maghrib).subtract(10, 'minutes').tz('Asia/Dhaka').format('hh:mm A')
     var maghribTime = moment(prayerTimes.maghrib).tz('Asia/Dhaka').format('hh:mm A');
     var ishaTime = moment(prayerTimes.isha).tz('Asia/Dhaka').format('hh:mm A');
-=======
+
     var fajrTime = moment(prayerTimes.fajr).tz('Asia/Dhaka').format('h:mm A');
     var sunriseTime = moment(prayerTimes.sunrise).tz('Asia/Dhaka').format('h:mm A');
     var dhuhrTime = moment(prayerTimes.dhuhr).tz('Asia/Dhaka').format('h:mm A');
@@ -82,7 +82,7 @@ function updatePrayerTimes() {
     var sunsetTime = moment(prayerTimes.maghrib).subtract(10, 'minutes').tz('Asia/Dhaka').format('h:mm A')
     var maghribTime = moment(prayerTimes.maghrib).tz('Asia/Dhaka').format('h:mm A');
     var ishaTime = moment(prayerTimes.isha).tz('Asia/Dhaka').format('h:mm A');
->>>>>>> 3b6fbb9bd9b3e82d18bfe31749d7e6683ab68c44
+
 
     function updater(index, time) {
         document.getElementsByClassName('prayer-time')[index].textContent = time;
