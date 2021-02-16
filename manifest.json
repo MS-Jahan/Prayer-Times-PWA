@@ -1,0 +1,22 @@
+{
+  "dir": "ltr",
+  "lang": "tr",
+  "name": "Prayer Times PWA",
+  "short_name": "Prayer Times PW",
+  "scope": "/prayer-times-pwa/",
+  "display": "standalone",
+  "start_url": "https://ms-jahan.github.io/prayer-times-pwa/",
+  "background_color": "#000000",
+  "theme_color": "#6200ee",
+  "description": "Prayer times in an web app!",
+  "orientation": "portrait",
+  "related_applications": [],
+  "prefer_related_applications": "false",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16"
+    }
+  ],
+  "url": "https://ms-jahan.github.io/prayer-times-pwa/"
+}

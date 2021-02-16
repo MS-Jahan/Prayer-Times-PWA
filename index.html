@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 
+    <link rel="manifest" href="manifest.json"></link>
+    <script src="manup.min.js"></script>
+    <meta name="theme-color" content="#6200ee">
+	<meta content='#6200ee' name='msapplication-navbutton-color' />
+	<meta content='#6200ee' name='apple-mobile-web-app-status-bar-style' />
+
     <link href="md/material-components-web.min.css" rel="stylesheet">
     <script src="md/material-components-web.min.js"></script>
     <link rel="stylesheet" href="md/md-icon.css">
@@ -14,9 +20,36 @@
     <script src="moment-with-locales.min.js"></script>
     <script src="moment-timezone-with-data-10-year-range.min.js"></script>
 
+    <script>
+		if ("serviceWorker" in navigator) {
+			if (navigator.serviceWorker.controller) {
+				console.log("An active service worker found, no need to register");
+			} else {
+				// Register the service worker
+				navigator.serviceWorker
+					.register("/pwabuilder-sw.js", {
+						scope: "/"
+					})
+					.then(function (reg) {
+						console.log("Service worker has been registered for scope: " + reg.scope);
+					});
+			}
+		}
+
+	</script>
+
+
 </head>
 
 <body>
+
+    <script type="module">
+		import './pwaupdate.js';
+
+		const el = document.createElement('pwa-update');
+		document.body.appendChild(el);
+	</script>
+
     <!-- App Bar -->
 
     <header class="mdc-top-app-bar app-bar" id="app-bar" style="top: 0px; left: 0px;">
