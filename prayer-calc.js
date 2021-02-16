@@ -54,7 +54,7 @@ function updatePrayerTimes() {
     var currentPrayer = prayerTimes.currentPrayer();
     var nextPrayer = prayerTimes.nextPrayer();
     var nextPrayerTime = prayerTimes.timeForPrayer(nextPrayer);
-    console.log(currentPrayer);
+    //console.log(currentPrayer);
     
     var lastPrayer;
     try {
@@ -64,17 +64,18 @@ function updatePrayerTimes() {
         lastPrayer = sessionStorage.getItem("lastPrayer");
     }
 
-    console.log(lastPrayer);
+    //console.log(lastPrayer);
 
-    var fajrTime = moment(prayerTimes.fajr).tz('Asia/Dhaka').format('h:mm A');
-    var sunriseTime = moment(prayerTimes.sunrise).tz('Asia/Dhaka').format('h:mm A');
-    var dhuhrTime = moment(prayerTimes.dhuhr).tz('Asia/Dhaka').format('h:mm A');
-    var asrTime = moment(prayerTimes.asr).tz('Asia/Dhaka').format('h:mm A');
-    var maghribTime = moment(prayerTimes.maghrib).tz('Asia/Dhaka').format('h:mm A');
-    var ishaTime = moment(prayerTimes.isha).tz('Asia/Dhaka').format('h:mm A');
+    var fajrTime = moment(prayerTimes.fajr).tz('Asia/Dhaka').format('hh:mm A');
+    var sunriseTime = moment(prayerTimes.sunrise).tz('Asia/Dhaka').format('hh:mm A');
+    var dhuhrTime = moment(prayerTimes.dhuhr).tz('Asia/Dhaka').format('hh:mm A');
+    var asrTime = moment(prayerTimes.asr).tz('Asia/Dhaka').format('hh:mm A');
+    var sunsetTime = moment(prayerTimes.maghrib).subtract(10, 'minutes').tz('Asia/Dhaka').format('hh:mm A')
+    var maghribTime = moment(prayerTimes.maghrib).tz('Asia/Dhaka').format('hh:mm A');
+    var ishaTime = moment(prayerTimes.isha).tz('Asia/Dhaka').format('hh:mm A');
 
     function updater(index, time) {
-        document.getElementsByClassName('prayer-time')[index].innerText = time;
+        document.getElementsByClassName('prayer-time')[index].textContent = time;
     }
 
     for (var i = 0; i < 5; i++) {
@@ -114,6 +115,7 @@ function updatePrayerTimes() {
     }
 
     document.getElementById('sunrise-time').innerText = sunriseTime;
+    document.getElementById('sunset-time').innerText = sunsetTime;
 
     var v = setTimeout(updatePrayerTimes, 5000);
 
