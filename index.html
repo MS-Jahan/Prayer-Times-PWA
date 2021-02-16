@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 
-    <script src="https://progressier.com/client/script.js?id=ySjBefmRnewptcmt0V6G"></script> 
-
-    <!-- <link rel="manifest" href="manifest.json"></link>
-    <script src="manup.min.js"></script> -->
+    <link rel="manifest" href="manifest.json"></link>
+    <script src="manup.min.js"></script>
     <meta name="theme-color" content="#6200ee">
 	<meta content='#6200ee' name='msapplication-navbutton-color' />
 	<meta content='#6200ee' name='apple-mobile-web-app-status-bar-style' />
@@ -81,15 +79,12 @@
         <div class="mdc-drawer__content">
             <nav class="mdc-list">
                 <!--<a class="mdc-list-item mdc-list-item--activated" href="#" aria-current="page" tabindex="0">-->
-                <a class="mdc-list-item mdc-list-item--activated"
-                    onclick='loadIframe("Online Class Credentials", "pages/credentials.html")'
-                    data-location="?page=credentials.html" aria-current="page" tabindex="0">
+                <a class="mdc-list-item mdc-list-item--activated" aria-current="page" tabindex="0">
                     <span class="mdc-list-item__ripple"></span>
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
                     <span class="mdc-list-item__text">Prayer Time</span>
                 </a>
-                <a class="mdc-list-item" onclick='loadIframe("Class Routine", "pages/routine.html")'
-                    data-location="?page=routine.html">
+                <a class="mdc-list-item">
                     <span class="mdc-list-item__ripple"></span>
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>
                     <span class="mdc-list-item__text">Settings</span>
@@ -99,7 +94,6 @@
     </aside>
 
     <div class="mdc-drawer-scrim"></div>
-    <script src="js/md-nav.js"></script>
     <!-- App Bar -->
 
     <div id="main-content">
@@ -154,10 +148,38 @@
         </div>
 
     </div>
+    <script src="js/md-nav.js"></script>
+    <!--Normal Alert Dialog-->
+	<div class="mdc-dialog">
+		<div class="mdc-dialog__container">
+			<div class="mdc-dialog__surface" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+				aria-describedby="my-dialog-content">
+				<!--<img align="center" src="https://ms-jahan.github.io//prayer-times-pwa//favicon.png" width="90px" />-->
+				<div class="mdc-dialog__content" id="my-dialog-content">
+					Love this app? Then install it in your device. No download required!
+				</div>
+				<div class="mdc-dialog__actions">
+					<button id="dialog-cancel" type="button" class="mdc-button mdc-dialog__button"
+						data-mdc-dialog-action="cancel">
+						<div class="mdc-button__ripple"></div>
+						<span class="mdc-button__label">Cancel</span>
+					</button>
+					<button id="pwa-install-accept" type="button" class="mdc-button mdc-dialog__button"
+						data-mdc-dialog-action="accept" data-mdc-dialog-button-default>
+						<div class="mdc-button__ripple"></div>
+						<span class="mdc-button__label">Accept</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="mdc-dialog__scrim"></div>
+	</div>
 
 
 
     <script src="prayer-calc.js"></script>
+    <script src="js/md-dialog.js"></script>
+    <script src="js/pwa-install.js"></script>
 </body>
 
 </html>
