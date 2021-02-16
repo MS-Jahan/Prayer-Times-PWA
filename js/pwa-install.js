@@ -39,7 +39,7 @@ function pwaInstall() {
 
 		document.getElementById('pwa-install-accept').addEventListener('click', pwaButtonListener, true);
 
-		document.getElementById("my-dialog-content").textContent = "পছন্দ হয়েছে? তাহলে ঝটপট ইন্সটল করে ফেলো তোমার ডিভাইসে! কোনো ডাউনলোডের প্রয়োজন নেই!!! ";
+		document.getElementById("my-dialog-content").textContent = "Love this app? Then install it in your device. No download required!";
 		dialog.open();
 
 		dialog.listen("MDCDialog:closing", (e) => {
