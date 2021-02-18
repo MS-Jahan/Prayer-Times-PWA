@@ -17,21 +17,27 @@ localStorage.setItem("longitude", "90.6615");
 localStorage.setItem("longitude", "90.6615");
 localStorage.setItem("timezone", "Asia/Dhaka");
 
-location_data = httpGet("https://ipinfo.io/json");
-console.log(location_data[1]);
-console.log(location_data[0]);
-location_data = JSON.parse(location_data[1]);
 
-if(location_data[0] >= 200 && location_data[0] < 300){
-    localStorage.setItem("city", location_data[1].city);
-    localStorage.setItem("region", location_data[1].region);
-    localStorage.setItem("country", location_data[1].country);
-    localStorage.setItem("latitude", (location_data[1].loc).split(",")[0]);
-    localStorage.setItem("longitude", (location_data[1].loc).split(",")[1]);
-    localStorage.setItem("timezone", location_data[1].timezone);
-} else {
-    //alert("Can't detect your location using IP! Using predefined location.");
+try{
+    location_data = httpGet("https://ipinfo.io/json");
+    console.log(location_data[1]);
+    console.log(location_data[0]);
+    location_data = JSON.parse(location_data[1]);
+
+    if(location_data[0] >= 200 && location_data[0] < 300){
+        localStorage.setItem("city", location_data[1].city);
+        localStorage.setItem("region", location_data[1].region);
+        localStorage.setItem("country", location_data[1].country);
+        localStorage.setItem("latitude", (location_data[1].loc).split(",")[0]);
+        localStorage.setItem("longitude", (location_data[1].loc).split(",")[1]);
+        localStorage.setItem("timezone", location_data[1].timezone);
+    } else {
+        //alert("Can't detect your location using IP! Using predefined location.");
+    }
+} catch {
+    //
 }
+
 
 function updateDateTime() {
     var time = new Date();
@@ -130,7 +136,7 @@ function updatePrayerTimes() {
     }
 
     try {
-        document.getElementById(currentPrayer).style.backgroundColor = "#329e5d";
+        document.getElementById(currentPrayer).style.background = "#329e5d";
     } catch {
         //document.getElementById(currentPrayer).style.backgroundColor = "#96d3fd";
     }
