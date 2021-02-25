@@ -1,42 +1,63 @@
-function httpGet(theUrl)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    var result = [];
-    result.push(xmlHttp.status);
-    result.push(xmlHttp.responseText);
-    return result;
-}
+// function httpGet(theUrl)
+// {
+//     var xmlHttp = new XMLHttpRequest();
+//     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+//     xmlHttp.send( null );
+//     var result = [];
+//     result.push(xmlHttp.status);
+//     result.push(xmlHttp.responseText);
+//     return result;
+// }
 
 localStorage.setItem("city", "Tungi");
 localStorage.setItem("region", "Dhaka");
 localStorage.setItem("country", "BD");
 localStorage.setItem("latitude", "23.8983");
 localStorage.setItem("longitude", "90.6615");
-localStorage.setItem("longitude", "90.6615");
 localStorage.setItem("timezone", "Asia/Dhaka");
 
+// function updateLocation() {
+//     var location_data = httpGet("https://ipinfo.io/json");
 
-try{
-    location_data = httpGet("https://ipinfo.io/json");
-    console.log(location_data[1]);
-    console.log(location_data[0]);
-    location_data = JSON.parse(location_data[1]);
+//     console.log(location_data[1]);
+//     console.log(location_data[0]);
+//     location_data = JSON.parse(location_data[1]);
 
-    if(location_data[0] >= 200 && location_data[0] < 300){
-        localStorage.setItem("city", location_data[1].city);
-        localStorage.setItem("region", location_data[1].region);
-        localStorage.setItem("country", location_data[1].country);
-        localStorage.setItem("latitude", (location_data[1].loc).split(",")[0]);
-        localStorage.setItem("longitude", (location_data[1].loc).split(",")[1]);
-        localStorage.setItem("timezone", location_data[1].timezone);
-    } else {
-        //alert("Can't detect your location using IP! Using predefined location.");
-    }
-} catch {
-    //
-}
+//     if(location_data[0] >= 200 && location_data[0] < 300){
+//         localStorage.setItem("city", r.city);
+//         localStorage.setItem("region", r.region);
+//         localStorage.setItem("country", r.country);
+//         localStorage.setItem("latitude", (r.loc).split(",")[0]);
+//         localStorage.setItem("longitude", (r.loc).split(",")[1]);
+//         localStorage.setItem("timezone", r.timezone);
+//     } else {
+//         console.log("Can't detect your location using IP! Using predefined location.");
+//     }
+
+// }
+
+(async () => {
+    let response = await new Promise(resolve => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://api.ipgeolocation.io/ipgeo?apiKey=37b5cfa9061c4deeb212a2884954fbdf", true);
+        xhr.onload = function (e) {
+            resolve(xhr.response);
+        };
+        xhr.onerror = function () {
+            resolve(undefined);
+            console.error("** An error occurred during the XMLHttpRequest");
+        };
+        xhr.send();
+    })
+    var r = JSON.parse(response);
+    console.log(r);
+    localStorage.setItem("city", r.city);
+    localStorage.setItem("region", r.district);
+    localStorage.setItem("country", r.country_name);
+    localStorage.setItem("latitude", r.latitude);
+    localStorage.setItem("longitude", r.longitude);
+    localStorage.setItem("timezone", r.time_zone.name);
+})();
 
 
 function updateDateTime() {
@@ -95,7 +116,7 @@ function updatePrayerTimes() {
     var sunriseTime = moment(prayerTimes.sunrise).tz(timezone).format('hh:mm A');
     var dhuhrTime = moment(prayerTimes.dhuhr).tz(timezone).format('hh:mm A');
     var asrTime = moment(prayerTimes.asr).tz(timezone).format('hh:mm A');
-    var sunsetTime = moment(prayerTimes.maghrib).subtract(10, 'minutes').tz(timezone).format('hh:mm A')
+    var sunsetTime = moment(prayerTimes.maghrib).tz(timezone).format('hh:mm A');
     var maghribTime = moment(prayerTimes.maghrib).tz(timezone).format('hh:mm A');
     var ishaTime = moment(prayerTimes.isha).tz(timezone).format('hh:mm A');
 
@@ -136,7 +157,9 @@ function updatePrayerTimes() {
     }
 
     try {
-        document.getElementById(currentPrayer).style.background = "#329e5d";
+        if (currentPrayer != 'sunrise') {
+            document.getElementById(currentPrayer).style.background = "#329e5d";
+        }
     } catch {
         //document.getElementById(currentPrayer).style.backgroundColor = "#96d3fd";
     }
