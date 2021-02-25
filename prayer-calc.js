@@ -9,12 +9,18 @@
 //     return result;
 // }
 
-localStorage.setItem("city", "Tungi");
-localStorage.setItem("region", "Dhaka");
-localStorage.setItem("country", "BD");
-localStorage.setItem("latitude", "23.8983");
-localStorage.setItem("longitude", "90.6615");
-localStorage.setItem("timezone", "Asia/Dhaka");
+try{
+    var temp = localStorage.getItem("timezone", "Asia/Dhaka");
+}
+catch {
+    localStorage.setItem("city", "Tungi");
+    localStorage.setItem("region", "Dhaka");
+    localStorage.setItem("country", "BD");
+    localStorage.setItem("latitude", "23.8983");
+    localStorage.setItem("longitude", "90.6615");
+    localStorage.setItem("timezone", "Asia/Dhaka");
+}
+
 
 // function updateLocation() {
 //     var location_data = httpGet("https://ipinfo.io/json");
