@@ -10,7 +10,7 @@
 // }
 
 try{
-    var temp = localStorage.getItem("timezone", "Asia/Dhaka");
+    var temp = localStorage.getItem("timezone");
 }
 catch {
     localStorage.setItem("city", "Tungi");
