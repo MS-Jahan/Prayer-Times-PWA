@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="md/md-icon.css">
+<style>
+    .material-icons.md-13 {
+        font-size: 13px;
+    }
+
+    .material-icons.md-18 {
+        font-size: 18px;
+    }
+
+    .material-icons.md-24 {
+        font-size: 24px;
+    }
+
+    .material-icons.md-36 {
+        font-size: 36px;
+    }
+
+    .material-icons.md-48 {
+        font-size: 48px;
+    }
+
+    #search-list {
+        border: 1px solid #ccc !important;
+        border-radius: 5px;
+        width: max-content;
+        background-color: #eee;
+    }
+
+    #search-list ul {
+        list-style-type: none;
+        padding-left: 0;
+        width: 200px;
+    }
+
+    #search-list li {
+        padding: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #search-list li:hover {
+        background-color: #ccc;
+    }
+</style>
+
+<body>
+
+    <p>A function is triggered when the user is pressing a key in the input field.</p>
+
+    <p id="result"></p>
+
+    <input id="source" type="text">
+    <div id="search-list">
+        <ul id="ul-list">
+            <li>1111</li>
+            <li>2222</li>
+            <li>3333</li>
+        </ul>
+    </div>
+
+    <p id="status">NONE</p>
+    <script>
+        var prev = '';
+        var now = '';
+        const status = document.getElementById('status');
+        const source = document.getElementById('source');
+        const result = document.getElementById('result');
+
+        const inputHandler = function (e) {
+            result.innerHTML = e.target.value;
+            now = result.innerHTML;
+        }
+
+        source.addEventListener('input', inputHandler);
+
+
+        prev = source.innerText;
+
+        function checkChange() {
+            //now = source.innerText;
+            if (prev == now) {
+                status.innerText = prev + "<br/>" + now + "<br/>" + "No Change!";
+            } else if (prev != now && source.value != "") {
+                status.innerText = prev + "<br/>" + now + "<br/>" + "Changed!";
+
+                // Rest of the task in async
+
+                (async () => {
+                    let response = await new Promise(resolve => {
+                        var xhr = new XMLHttpRequest();
+                        // var query = document.getElementById("source");
+                        // var url = "https://nominatim.openstreetmap.org/search.php?q=" + query.innerText + "&format=jsonv2";
+                        var url = "https://nominatim.openstreetmap.org/search.php?q=" + source.value + "&format=jsonv2";
+                        console.log(url);
+                        xhr.open("GET", url, true);
+                        xhr.onload = function (e) {
+                            resolve(xhr.response);
+                        };
+                        xhr.onerror = function () {
+                            resolve(undefined);
+                            console.error("** An error occurred during the XMLHttpRequest");
+                        };
+                        xhr.send();
+                    });
+                    console.log(response);
+                    var data = JSON.parse(response);
+                    var ul_list = document.getElementById("ul-list");
+                    ul_list.innerHTML = "";
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            ul_list.innerHTML += "<li lat='" + data[i].lat + "' lon='" + data[i].lon + "'>" + "<span class='material-icons md-13'>place</span>&nbsp;" + data[i].display_name + "</li>"
+                        }
+                    } else {
+                        ul_list.innerHTML = "<li><i>No places found!</i></li>"
+                    }
+                })();
+            }
+            prev = now;
+            status.innerText += " - " + new Date().toLocaleTimeString();
+        }
+
+        setInterval("checkChange(prev)", 3000);
+
+    </script>
+
+</body>
+
+</html>

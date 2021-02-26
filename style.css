@@ -54,6 +54,48 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#location-search-bar {
+    float: right;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    right: 10px;
+    width: 202px;
+    position: fixed;
+    top: 10%;
+    z-index: 101;
+}
+
+#search-list {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: max-content;
+    background-color: #eee;
+    float: right;
+    right: 10px;
+    position: fixed;
+    top: 14%;
+    z-index: 100;
+}
+
+#search-list ul {
+    list-style-type: none;
+    padding-left: 0;
+    width: 200px;
+}
+
+#search-list li {
+    color:rgb(49, 48, 48);
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#search-list li:hover {
+    background-color: #ccc;
+}
+
 #main-content {
     padding-top: 3%;
     padding-left: 4%;

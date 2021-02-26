@@ -1,69 +1,30 @@
-// function httpGet(theUrl)
-// {
-//     var xmlHttp = new XMLHttpRequest();
-//     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-//     xmlHttp.send( null );
-//     var result = [];
-//     result.push(xmlHttp.status);
-//     result.push(xmlHttp.responseText);
-//     return result;
-// }
-
-try{
-    var temp = localStorage.getItem("timezone");
-}
-catch {
-    localStorage.setItem("city", "Tungi");
-    localStorage.setItem("region", "Dhaka");
-    localStorage.setItem("country", "BD");
+if (localStorage.getItem("timezone") == null) {
+    localStorage.setItem("location", "Tungi, Dhaka, Bangladesh");
     localStorage.setItem("latitude", "23.8983");
     localStorage.setItem("longitude", "90.6615");
     localStorage.setItem("timezone", "Asia/Dhaka");
 }
 
-
-// function updateLocation() {
-//     var location_data = httpGet("https://ipinfo.io/json");
-
-//     console.log(location_data[1]);
-//     console.log(location_data[0]);
-//     location_data = JSON.parse(location_data[1]);
-
-//     if(location_data[0] >= 200 && location_data[0] < 300){
-//         localStorage.setItem("city", r.city);
-//         localStorage.setItem("region", r.region);
-//         localStorage.setItem("country", r.country);
-//         localStorage.setItem("latitude", (r.loc).split(",")[0]);
-//         localStorage.setItem("longitude", (r.loc).split(",")[1]);
-//         localStorage.setItem("timezone", r.timezone);
-//     } else {
-//         console.log("Can't detect your location using IP! Using predefined location.");
-//     }
-
-// }
-
-(async () => {
-    let response = await new Promise(resolve => {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://api.ipgeolocation.io/ipgeo?apiKey=37b5cfa9061c4deeb212a2884954fbdf", true);
-        xhr.onload = function (e) {
-            resolve(xhr.response);
-        };
-        xhr.onerror = function () {
-            resolve(undefined);
-            console.error("** An error occurred during the XMLHttpRequest");
-        };
-        xhr.send();
-    })
-    var r = JSON.parse(response);
-    console.log(r);
-    localStorage.setItem("city", r.city);
-    localStorage.setItem("region", r.district);
-    localStorage.setItem("country", r.country_name);
-    localStorage.setItem("latitude", r.latitude);
-    localStorage.setItem("longitude", r.longitude);
-    localStorage.setItem("timezone", r.time_zone.name);
-})();
+// (async () => {
+//     let response = await new Promise(resolve => {
+//         var xhr = new XMLHttpRequest();
+//         xhr.open("GET", "https://api.ipgeolocation.io/ipgeo?apiKey=37b5cfa9061c4deeb212a2884954fbdf", true);
+//         xhr.onload = function (e) {
+//             resolve(xhr.response);
+//         };
+//         xhr.onerror = function () {
+//             resolve(undefined);
+//             console.error("** An error occurred during the XMLHttpRequest");
+//         };
+//         xhr.send();
+//     });
+//     var r = JSON.parse(response);
+//     console.log(r);
+//     localStorage.setItem("city", r.city + ", " + r.district + ", " + r.country_name);
+//     localStorage.setItem("latitude", r.latitude);
+//     localStorage.setItem("longitude", r.longitude);
+//     localStorage.setItem("timezone", r.time_zone.name);
+// })();
 
 
 function updateDateTime() {
@@ -102,7 +63,7 @@ function updatePrayerTimes() {
     var latitude = localStorage.getItem("latitude");
     var longitude = localStorage.getItem("longitude");
     var timezone = localStorage.getItem("timezone");
-    var locationT = localStorage.getItem("city") + ", " + localStorage.getItem("region") + ", " + localStorage.getItem("country");
+    var locationT = localStorage.getItem("location");
 
     document.getElementById("location").textContent = locationT;
 
@@ -179,3 +140,11 @@ function updatePrayerTimes() {
 
 updatePrayerTimes();
 
+
+
+// function searchLocationUsingAPI() {
+//     var previuosInput = "";
+//     var currentInput = "";
+
+//     while(1)
+// }

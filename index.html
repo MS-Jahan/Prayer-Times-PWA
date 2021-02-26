@@ -21,20 +21,20 @@
     <script src="moment-timezone-with-data-10-year-range.min.js"></script>
 
     <script>
-		if ("serviceWorker" in navigator) {
-			if (navigator.serviceWorker.controller) {
-				console.log("An active service worker found, no need to register");
-			} else {
-				// Register the service worker
-				navigator.serviceWorker
-					.register("/prayer-times-pwa/pwabuilder-sw.js", {
-						scope: "/prayer-times-pwa/"
-					})
-					.then(function (reg) {
-						console.log("Service worker has been registered for scope: " + reg.scope);
-					});
-			}
-		}
+		// if ("serviceWorker" in navigator) {
+		// 	if (navigator.serviceWorker.controller) {
+		// 		console.log("An active service worker found, no need to register");
+		// 	} else {
+		// 		// Register the service worker
+		// 		navigator.serviceWorker
+		// 			.register("/prayer-times-pwa/pwabuilder-sw.js", {
+		// 				scope: "/prayer-times-pwa/"
+		// 			})
+		// 			.then(function (reg) {
+		// 				console.log("Service worker has been registered for scope: " + reg.scope);
+		// 			});
+		// 	}
+		// }
 
 	</script>
 
@@ -59,12 +59,15 @@
                 <span class="mdc-top-app-bar__title">Prayer Times PWA</span>
             </section>
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                <button onclick="searchBarAppearToggle()" class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+                    aria-label="Search">
+                    search
+                </button>
                 <button id='install-button' onclick="pwaInstall()"
                     class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
                     aria-label="Favorite">favorite</button>
                 <button onclick="openCornerMenu()" class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
                     aria-label="Options">
-
                     more_vert
                 </button>
             </section>
@@ -96,7 +99,19 @@
     <div class="mdc-drawer-scrim"></div>
     <!-- App Bar -->
 
+    <form>
+        <input id="location-search-bar" style="visibility: hidden;" type="text" name="search" placeholder="Search Location.."> 
+    </form><br/>
+    <!-- onfocusout="searchBarDisappear()" -->
+    <div id="search-list" style="visibility: hidden;">
+        <ul id="ul-list">
+            <li><i>Type your location</i></li>
+        </ul>
+    </div>
+    
+
     <div id="main-content">
+        
         <div id="time">
             <span id="hour">HOUR</span>:<span id="minute">MINUTE</span><span id="small-colon">:</span><span
                 id="second">SECOND</span>&nbsp;<span id="am-pm">pm</span>
@@ -182,6 +197,7 @@
     <script src="prayer-calc.js"></script>
     <script src="js/md-dialog.js"></script>
     <script src="js/pwa-install.js"></script>
+    <script src="js/location-search.js"></script>
 </body>
 
 </html>
